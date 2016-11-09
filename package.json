@@ -1,6 +1,6 @@
 {
   "name": "aws-lambda-http",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "wrapper to make lambda funtion return http response",
   "main": "index.js",
   "scripts": {

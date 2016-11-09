@@ -1,7 +1,7 @@
 /**
  * process event variable and invoke get /put/post and delete
  */
-var _ = require("lodash");
+
 var _resourceMap={};
 _resourceMap['GET']={};
 _resourceMap['POST']={};
