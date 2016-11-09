@@ -1,0 +1,28 @@
+{
+  "name": "aws-lambda-http",
+  "version": "1.0.0",
+  "description": "wrapper to make lambda funtion return http response",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aranga-au/aws-lambda-http.git"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "Restful",
+    "service"
+  ],
+  "author": "Aranga Nanayakkara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aranga-au/aws-lambda-http/issues"
+  },
+  "homepage": "https://github.com/aranga-au/aws-lambda-http#readme",
+  "dependencies": {
+    "lodash": "^4.16.6"
+  }
+}
