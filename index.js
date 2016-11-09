@@ -73,7 +73,13 @@ module.exports = {
                 callback(null,httpResponse(json,status));
             }
         };
-        fn(request,response);
+        try
+        {
+            fn(request,response);
+        }catch(e){
+            callback(null,httpResponse(e,'500'));
+        }
+
     }
 
 };
