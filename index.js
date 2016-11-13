@@ -23,6 +23,10 @@ httpResponse = function (json, status, headers) {
 var converter;
 converter = function (body) {
 
+    if (!body || body === ''){
+        console.log("empty body");
+        return null;
+    }
     var cleaned = body.trim();
     var json = JSON.parse(cleaned);
     return json;
@@ -69,7 +73,9 @@ module.exports = {
              json = converter(event.body);
         }catch (e)
         {
-
+            console.log("parsing error in body");
+            callback(null,httpResponse(e,'500'));
+            return;
         }
         var request = {
             headers:event.headers,
