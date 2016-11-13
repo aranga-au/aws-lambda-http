@@ -9,7 +9,7 @@ var app = require('aws-lambda-http')
 
 app.get('/greeting', function (req, res) {
   res.send('Hello World')
-})
+});
 
 // This is the handler that's invoked by Lambda
 exports.handler = app.handler;
