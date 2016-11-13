@@ -20,7 +20,14 @@ httpResponse = function (json, status, headers) {
     };
 };
 
+var converter;
+converter = function (body) {
 
+    var cleaned = body.trim();
+    var json = JSON.parse(cleaned);
+    return json;
+
+};
 
 
 
@@ -56,9 +63,17 @@ module.exports = {
         }
 
         var fn = _resourceMap[event.httpMethod][event.resource];
+        var json = null;
+        try
+        {
+             json = converter(event.body);
+        }catch (e)
+        {
+
+        }
         var request = {
             headers:event.headers,
-            body : event.body,
+            body : json,
             params:event.queryStringParameters ||{},
             pathParams: event.pathParameters ||{},
             method:event.httpMethod || 'GET'
@@ -75,6 +90,7 @@ module.exports = {
         };
         try
         {
+
             fn(request,response);
         }catch(e){
             callback(null,httpResponse(e,'500'));
