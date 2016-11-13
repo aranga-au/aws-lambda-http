@@ -1,7 +1,7 @@
 {
   "name": "aws-lambda-http",
   "version": "1.0.2",
-  "description": "wrapper to make lambda funtion return http response",
+  "description": "Framework to make AWS Lambda easy !",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
