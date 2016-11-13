@@ -1,7 +1,7 @@
 # aws-lambda-http
 Web framework for AWS Lambda.
 
-## Usage (lambda
+## Usage (lambda)
 index.js (lambda)
 ```js
 var app = require('aws-lambda-http')
