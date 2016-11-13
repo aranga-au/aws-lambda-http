@@ -74,7 +74,12 @@ module.exports = {
         }catch (e)
         {
             console.log("parsing error in body");
-            callback(null,httpResponse(e,'500'));
+            error = {
+                "message":"could't parse the request body - valid json object required",
+                "error":e
+            };
+            //sending bad request
+            callback(null,httpResponse(error,'400'));
             return;
         }
         var request = {
