@@ -23,4 +23,4 @@ $ npm install aws-lambda-http
 ```
 
 ## NOTE:
-check the option 'Use Lambda Proxy integration' when you intergrate with AWS API Gateway
+check the option 'Use Lambda Proxy integration' when you integrate with AWS API Gateway
