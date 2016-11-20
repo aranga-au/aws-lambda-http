@@ -52,7 +52,7 @@ module.exports = {
     dele:function del(url,callback) {
         _resourceMap['DELETE'][url] = callback;
     },
-    delete:function del() {
+    delete:function del(url,callback) {
         _resourceMap['DELETE'][url] = callback;
     },
     handler:function (event,context,callback){
