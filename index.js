@@ -49,7 +49,7 @@ module.exports = {
     put:function put(url,callback) {
         _resourceMap['PUT'][url] = callback;
     },
-    dele:function del(url,callback) {
+    del:function del(url,callback) {
         _resourceMap['DELETE'][url] = callback;
     },
     delete:function del(url,callback) {
