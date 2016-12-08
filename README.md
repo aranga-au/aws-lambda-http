@@ -6,6 +6,16 @@ index.js (lambda)
 ```js
 var app = require('aws-lambda-http');
 
+//middleware (e.g Authorization header validation /resource access)
+
+app.use(function(req,resp,next){
+
+    if (!req.hearders.Authorization){
+        resp.send("Unauthorised access",401);
+        return;
+    }
+    next();
+});
 
 app.get('/greeting', function (req, res) {
   res.send('Hello World');

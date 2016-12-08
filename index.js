@@ -7,6 +7,7 @@ _resourceMap['GET']={};
 _resourceMap['POST']={};
 _resourceMap['PUT']={};
 _resourceMap['DELETE']={};
+var _middleware =[];
 var httpResponse;
 httpResponse = function (json, status, headers) {
 
@@ -55,6 +56,13 @@ module.exports = {
     delete:function del(url,callback) {
         _resourceMap['DELETE'][url] = callback;
     },
+
+    use:function(callback){
+        _middleware.push(callback);
+
+    },
+
+
     handler:function (event,context,callback){
 
         if (!(_resourceMap[event.httpMethod])){
@@ -67,12 +75,14 @@ module.exports = {
             return;
 
         }
-
+        //request method
         var fn = _resourceMap[event.httpMethod][event.resource];
+
+        var executionChainDone = false;
         var json = null;
         try
         {
-             json = converter(event.body);
+            json = converter(event.body);
         }catch (e)
         {
             console.log("parsing error in body");
@@ -94,17 +104,43 @@ module.exports = {
         var response ={
             send:function(json,status){
                 status = status || '200';
+                executionChainDone = true;
                 callback(null,httpResponse(json,status));
+
             },
             sendError:function(json,status){
                 status = status || '500';
+                executionChainDone = true;
                 callback(null,httpResponse(json,status));
             }
         };
         try
         {
+            i=1;
+            var mf = null;
+            //middleware execution
+            var next = function(){
+                if (executionChainDone){
+                    console.log('execution done !!!')
+                    return;
+                }
+                if (i >= _middleware.length){
+                    fn(request,response);
+                }
+                else{
+                    mf = _middleware[i];
+                    i++;
+                    mf(request,response,next);
+                }
+            };
 
-            fn(request,response);
+            if (_middleware.length >0){
+                mf =_middleware[0];
+                mf(request,response,next);
+            }
+            else{
+                fn(request,response);
+            }
         }catch(e){
             callback(null,httpResponse(e,'500'));
         }
