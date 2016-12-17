@@ -97,6 +97,8 @@ module.exports = {
         var request = {
             headers:event.headers,
             body : json,
+			resource : event.resource,
+			_raw:event,
             params:event.queryStringParameters ||{},
             pathParams: event.pathParameters ||{},
             method:event.httpMethod || 'GET'
@@ -125,6 +127,7 @@ module.exports = {
                     return;
                 }
                 if (i >= _middleware.length){
+
                     fn(request,response);
                 }
                 else{
